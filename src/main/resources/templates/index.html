@@ -1,11 +1,12 @@
 <!DOCTYPE html>
-<html xmlns:th="http://thymeleaf.org" lang="en">
+<html lang="en" xmlns:th="http://thymeleaf.org"
+                xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 
 <head>
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-  <title>Bao Nguyen Photo - Home</title>
+  <title layout:title-pattern="CONTENT_TITLE - $LAYOUT_TITLE">Bao Nguyen Photo</title>
   <meta content="" name="description">
   <meta content="" name="keywords">
 
@@ -28,17 +29,10 @@
   <!-- Template Main CSS File -->
   <link href="assets/css/main.css" rel="stylesheet">
 
-  <!-- =======================================================
-  * Template Name: PhotoFolio
-  * Updated: Jul 27 2023 with Bootstrap v5.3.1
-  * Template URL: https://bootstrapmade.com/photofolio-bootstrap-photography-website-template/
-  * Author: BootstrapMade.com
-  * License: https://bootstrapmade.com/license/
-  ======================================================== -->
+  <title layout:title-pattern="CONTENT_TITLE - $LAYOUT_TITLE">Bao Nguyen Photo</title>
 </head>
 
 <body>
-
   <!-- ======= Header ======= -->
   <header id="header" class="header d-flex align-items-center fixed-top">
     <div class="container-fluid d-flex align-items-center justify-content-between">
@@ -74,42 +68,41 @@
     </div>
   </header><!-- End Header -->
 
+  <!-- CONTENT WILL BE INJECTED HERE -->
+  <!-- TEMPORARY DISABLED CAUSE IT DOESN'T WORK -->
+  <!--
+  <section layout:fragment="content"></section>
+  -->
+
   <!-- ======= Hero Section ======= -->
   <section id="hero" class="hero d-flex flex-column justify-content-center align-items-center" data-aos="fade" data-aos-delay="1500">
     <div class="container">
       <div class="row justify-content-center">
         <div class="col-lg-6 text-center">
           <h2>Hi there! My name is <span>Bao</span>, your friendly neighbor photographer</h2>
-          <!-- <p>Blanditiis praesentium aliquam illum tempore incidunt debitis dolorem magni est deserunt sed qui libero. Qui voluptas amet.</p> -->
           <!-- <a href="contact.html" class="btn-get-started">Available for hire</a> -->
         </div>
       </div>
     </div>
   </section><!-- End Hero Section -->
 
-  <main id="main" data-aos="fade" data-aos-delay="1500">
-
-    <!-- ======= Gallery Section ======= -->
-    <section id="gallery" class="gallery">
-      <div class="container-fluid">
-
-        <div class="row gy-4 justify-content-center">
-          <!-- Start Gallery Item -->
-          <div th:each="photo :${photos}" class="col-xl-3 col-lg-4 col-md-6">
-            <div class="gallery-item h-100">
-              <img th:src="${photo.photoUrl}" class="img-fluid" alt="">
-              <div class="gallery-links d-flex align-items-center justify-content-center">
-                <a th:href="${photo.photoUrl}" th:title="${photo.title}" class="glightbox preview-link"><i class="bi bi-arrows-angle-expand"></i></a>
-                <!-- <a href="gallery-single.html" class="details-link"><i class="bi bi-link-45deg"></i></a> -->
-              </div>
+  <!-- ======= Gallery Section ======= -->
+  <section id="gallery" class="gallery">
+    <div class="container-fluid">
+      <div class="row gy-4 justify-content-center">
+        <!-- Start Gallery Item -->
+        <div th:each="photo :${photos}" class="col-xl-3 col-lg-4 col-md-6">
+          <div class="gallery-item h-100">
+            <img th:src="${photo.photoUrl}" class="img-fluid" alt="">
+            <div class="gallery-links d-flex align-items-center justify-content-center">
+              <a th:href="${photo.photoUrl}" th:title="${photo.title}" class="glightbox preview-link"><i class="bi bi-arrows-angle-expand"></i></a>
+              <!-- <a href="gallery-single.html" class="details-link"><i class="bi bi-link-45deg"></i></a> -->
             </div>
-          </div><!-- End Gallery Item -->
-        </div>
-
+          </div>
+        </div><!-- End Gallery Item -->
       </div>
-    </section><!-- End Gallery Section -->
-
-  </main><!-- End #main -->
+    </div>
+  </section><!-- End Gallery Section -->
 
   <!-- ======= Footer ======= -->
   <footer id="footer" class="footer">
@@ -144,5 +137,4 @@
   <script src="assets/js/main.js"></script>
 
 </body>
-
 </html>
