@@ -32,6 +32,9 @@ public class PhotoServiceImpl implements PhotoService {
                 .uploadedOn(photo.getUploadedOn())
                 .Category(photo.getCategory())
                 .build();
+    }
 
+    public Photo savePhoto(Photo photo){
+        return photoRepository.save(photo);
     }
 }

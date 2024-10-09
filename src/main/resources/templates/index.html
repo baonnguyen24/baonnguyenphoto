@@ -3,15 +3,12 @@
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorate="~{layout}">
 
-
-<head th:include="layout :: head">
+<head>
   <title>Home</title>
 </head>
 
 <body>
-  <div th:include="layout :: header"></div>
-
-  <div th:fragment="content">
+  <div layout:fragment="content">
       <!-- ======= Hero Section ======= -->
       <section id="hero" class="hero d-flex flex-column justify-content-center align-items-center" data-aos="fade" data-aos-delay="1500">
         <div class="container">
@@ -42,8 +39,5 @@
         </div>
       </section><!-- End Gallery Section -->
     </div>
-
-    <div th:include="layout :: footer"></div>
-    <div th:include="layout :: other"></div>
   </body>
 </html>

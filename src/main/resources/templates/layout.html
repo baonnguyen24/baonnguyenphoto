@@ -6,7 +6,7 @@
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-  <title layout:title-pattern="CONTENT_TITLE - $LAYOUT_TITLE">Bao Nguyen Photo</title>
+  <title layout:title-pattern="$CONTENT_TITLE - $LAYOUT_TITLE">Bao Nguyen Photo</title>
   <meta content="" name="description">
   <meta content="" name="keywords">
 
@@ -45,10 +45,10 @@
           <li><a href="about.html">About</a></li>
           <li class="dropdown"><a href="#"><span>Gallery</span> <i class="bi bi-chevron-down dropdown-indicator"></i></a>
             <ul>
-              <li><a href="gallery-landscape.html">Landscape</a></li>
-              <li><a href="gallery-cityscape.html">Cityscape</a></li>
-              <li><a href="gallery-event.html">Event</a></li>
-              <li><a href="gallery-product.html">Product</a></li>
+              <li><a th:href="@{landscape}">Landscape</a></li>
+              <li><a th:href="@{cityscape}">Cityscape</a></li>
+              <li><a th:href="@{event}">Event</a></li>
+              <li><a th:href="@{product}">Product</a></li>
             </ul>
           </li>
         </ul>
@@ -67,7 +67,9 @@
 
 
   <!-- ======= CONTENT ======= -->
-  <div th:fragment="content"></div>
+  <div layout:fragment="content">
+
+  </div>
 
 
   <!-- ======= FOOTER ======= -->

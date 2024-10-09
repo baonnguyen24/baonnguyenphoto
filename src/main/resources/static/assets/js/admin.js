@@ -23,6 +23,14 @@ greeting(time);
 // end greeting notice
 
 let collection = document.querySelectorAll(".admin-collection");
+
+<!-- ==== JavaScript to handle selection ==== -->
+function selectCollection(collection) {
+  // Update the dropdown button text
+  document.getElementById('dropdownMenuButton').textContent = collection;
+  // Store the selected value in the hidden input field for submission
+  document.getElementById('selectedCollectionInput').textContent = collection;
+}
  
 
 
