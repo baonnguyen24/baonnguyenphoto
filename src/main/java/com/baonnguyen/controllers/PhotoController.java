@@ -39,12 +39,6 @@ public class PhotoController {
         return "admin";
     }
 
-    @PostMapping("/admin")
-    public String addPhoto(@ModelAttribute("photo") Photo photo){
-        photoService.savePhoto(photo);
-        return "redirect:/admin";
-    }
-
     // ==== GETMAPPING METHOD TO NAVIGATE AROUND
     @GetMapping("/landscape")
     public String loadLandscapePhoto(Model model) {
@@ -71,6 +65,6 @@ public class PhotoController {
     public String loadProductPhoto(Model model) {
         List<PhotoDto> photos = photoService.findAllPhoto();
         model.addAttribute("photos", photos);
-        return "gallery-Product";
+        return "gallery-product";
     }
 }
