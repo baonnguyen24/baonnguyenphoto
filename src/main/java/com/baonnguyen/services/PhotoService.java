@@ -9,4 +9,8 @@ public interface PhotoService {
     List<PhotoDto> findAllPhoto();
 
     Photo savePhoto(Photo photo);
+
+    public List<PhotoDto> getPhotoByGallery(String galleryName);
+
+    public List<PhotoDto> findRandomPhotos(int count);
 }

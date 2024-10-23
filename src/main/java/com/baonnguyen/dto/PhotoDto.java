@@ -1,8 +1,8 @@
 package com.baonnguyen.dto;
 
+import com.baonnguyen.models.Category;
 import lombok.Builder;
 import lombok.Data;
-import org.hibernate.annotations.CreationTimestamp;
 
 import java.time.LocalDateTime;
 
@@ -14,5 +14,5 @@ public class PhotoDto {
     private String description;
     private LocalDateTime uploadedOn;
     private String photoUrl;
-    private String Category;
+    private String category;
 }

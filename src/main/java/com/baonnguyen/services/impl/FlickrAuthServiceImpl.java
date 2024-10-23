@@ -43,7 +43,7 @@ public class FlickrAuthServiceImpl implements FlickrAuthService {
     // Step 3: Exchange request token and verifier for access token
     @Override
     public void getAccessToken(String oauthVerifier) throws IOException, ExecutionException, InterruptedException {
-        accessToken  = service.getAccessToken(requestToken, oauthVerifier);
+        accessToken = service.getAccessToken(requestToken, oauthVerifier);
     }
 
     // Step 4: Make authenticated requests using the access token

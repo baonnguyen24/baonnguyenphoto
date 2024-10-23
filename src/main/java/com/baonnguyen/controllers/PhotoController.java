@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import java.util.List;
@@ -26,9 +27,19 @@ public class PhotoController {
 
     @GetMapping("/index")
     public String listPhoto(Model model) {
-        List<PhotoDto> photos = photoService.findAllPhoto();
+        List<PhotoDto> photos = photoService.findRandomPhotos(12);
         model.addAttribute("photos", photos);
         return "index";
+    }
+
+    @GetMapping("/about")
+    public String about(Model model) { return "about"; }
+
+    @GetMapping("/{galleryName}")
+    public String loadGalleryPhoto(@PathVariable("galleryName") String galleryName, Model model) {
+        List<PhotoDto> photos = photoService.getPhotoByGallery(galleryName);
+        model.addAttribute("photos", photos);
+        return "gallery-"+galleryName;
     }
 
     @GetMapping("/admin")
@@ -37,34 +48,5 @@ public class PhotoController {
         List<PhotoDto> photos = photoService.findAllPhoto();
         model.addAttribute("photos", photos);
         return "admin";
-    }
-
-    // ==== GETMAPPING METHOD TO NAVIGATE AROUND
-    @GetMapping("/landscape")
-    public String loadLandscapePhoto(Model model) {
-        List<PhotoDto> photos = photoService.findAllPhoto();
-        model.addAttribute("photos", photos);
-        return "gallery-landscape";
-    }
-
-    @GetMapping("/cityscape")
-    public String loadCityscapePhoto(Model model) {
-        List<PhotoDto> photos = photoService.findAllPhoto();
-        model.addAttribute("photos", photos);
-        return "gallery-cityscape";
-    }
-
-    @GetMapping("/event")
-    public String loadEventPhoto(Model model) {
-        List<PhotoDto> photos = photoService.findAllPhoto();
-        model.addAttribute("photos", photos);
-        return "gallery-event";
-    }
-
-    @GetMapping("/product")
-    public String loadProductPhoto(Model model) {
-        List<PhotoDto> photos = photoService.findAllPhoto();
-        model.addAttribute("photos", photos);
-        return "gallery-product";
     }
 }

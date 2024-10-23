@@ -23,6 +23,11 @@ public class PhotoServiceImpl implements PhotoService {
         return photos.stream().map((photo) -> mapToPhotoDto(photo)).collect(Collectors.toList());
     }
 
+    public List<PhotoDto> findRandomPhotos(int count) {
+        List<Photo> photos = photoRepository.findRandomPhotos(count);
+        return photos.stream().map((photo) -> mapToPhotoDto(photo)).collect(Collectors.toList());
+    }
+
     private PhotoDto mapToPhotoDto(Photo photo){
         return PhotoDto.builder()
                 .id(photo.getId())
@@ -30,11 +35,18 @@ public class PhotoServiceImpl implements PhotoService {
                 .description(photo.getDescription())
                 .photoUrl(photo.getPhotoUrl())
                 .uploadedOn(photo.getUploadedOn())
-                .Category(photo.getCategory())
+                .category(photo.getCategory().getCatName())
                 .build();
     }
 
     public Photo savePhoto(Photo photo){
         return photoRepository.save(photo);
     }
+
+    public List<PhotoDto> getPhotoByGallery(String galleryName){
+        List<Photo> photos = photoRepository.findByCategory_CatName(galleryName);
+        return photos.stream().map((photo) -> mapToPhotoDto(photo)).collect(Collectors.toList());
+    }
+
+
 }

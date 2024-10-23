@@ -23,5 +23,8 @@ public class Photo {
     @CreationTimestamp
     private LocalDateTime uploadedOn;
     private String photoUrl;
-    private String Category;
+
+    @ManyToOne
+    @JoinColumn(name = "category_id")
+    private Category category;
 }
