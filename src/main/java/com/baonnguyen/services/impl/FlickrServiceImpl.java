@@ -13,12 +13,4 @@ public class FlickrServiceImpl implements FlickrService {
 
     @Autowired
     private RestTemplate restTemplate;
-
-    public String deletePhoto(String photoId){
-        String url = String.format("%s?method=flickr.photos.delete&api_key=%s&auth_token=%s&photo_id=%s&format=json&nojsoncallback=1",
-                FLICKR_API_URL, API_KEY, API_SECRET, photoId);
-
-        return restTemplate.getForObject(url, String.class);
-    }
-
 }

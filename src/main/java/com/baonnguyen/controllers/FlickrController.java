@@ -40,10 +40,4 @@ public class FlickrController {
         // Return success message (or redirect user)
         return "redirect:/admin.html";
     }
-
-    // ==== ACTION ====
-    @DeleteMapping("/delete")
-    public String deletePhoto(@RequestParam String photoId){
-        return flickerService.deletePhoto(photoId);
-    }
 }

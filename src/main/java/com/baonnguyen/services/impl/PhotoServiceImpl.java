@@ -13,10 +13,14 @@ import java.util.stream.Collectors;
 public class PhotoServiceImpl implements PhotoService {
     private PhotoRepository photoRepository;
 
+    // ===== CONSTRUCTOR ======
     public PhotoServiceImpl(PhotoRepository photoRepository) {
         this.photoRepository = photoRepository;
     }
 
+    // ========================
+    // ========================
+    // ===== METHODS ==========
     @Override
     public List<PhotoDto> findAllPhoto() {
         List<Photo> photos = photoRepository.findAll();
