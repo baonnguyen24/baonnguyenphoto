@@ -22,11 +22,14 @@ import java.util.UUID;
 
 @Controller
 public class PhotoController {
+
     private PhotoService photoService;
     private CategoryService categoryService;
 
-    public PhotoController(PhotoService photoService) {
+    public PhotoController(PhotoService photoService, CategoryService categoryService) {
+
         this.photoService = photoService;
+        this.categoryService = categoryService;
     }
 
     @GetMapping("/")
@@ -65,9 +68,11 @@ public class PhotoController {
     }
 
     @PostMapping("/admin/uploadPhoto")
-    public String uploadPhoto(@RequestParam("photo") MultipartFile file,
+    public String uploadPhoto(@RequestParam("photoFile") MultipartFile file,
                               @RequestParam("galleryName") String galleryName,
                               Model model){
+
+        System.out.println("Method's called");
 
         if(file.isEmpty()){
             model.addAttribute("message", "Please select a file");
@@ -75,11 +80,14 @@ public class PhotoController {
         }
 
         try{
+            long fileSize = file.getSize();
+            System.out.println("uploaded file size: " + fileSize);
+
             // Generate Unique filename with category prefix
             String fileName = galleryName + "_" + UUID.randomUUID().toString() + "_" + file.getOriginalFilename();
 
             // Define upload gallery -- NEED TO IMPLEMENT ticket BNN-9 here
-            String uploadDir = "/src/main/resources/static/uploads/" + galleryName + "/";
+            String uploadDir = System.getProperty("user.dir") + "/uploads/" + galleryName + "/";
             Path uploadPath = Paths.get(uploadDir);
 
             if(!Files.exists(uploadPath)){
