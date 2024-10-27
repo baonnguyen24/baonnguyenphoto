@@ -5,10 +5,7 @@ import com.baonnguyen.models.Photo;
 import com.baonnguyen.services.PhotoService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -43,9 +40,14 @@ public class PhotoController {
     }
 
     @GetMapping("/admin")
-    public String displayPhotoCollection(Model model) {
+    public String displayPhotoCollection(@RequestParam(value = "galleryName", required = false) String galleryName , Model model) {
         // NEED TO IMPLEMENT THE FILTER TO SELECT COLLECTION
-        List<PhotoDto> photos = photoService.findAllPhoto();
+        List<PhotoDto> photos;
+        if(galleryName == null || galleryName.isEmpty()) {
+            photos = photoService.getPhotoByGallery("landscape");
+        } else{
+            photos = photoService.getPhotoByGallery(galleryName);
+        }
         model.addAttribute("photos", photos);
         return "admin";
     }
