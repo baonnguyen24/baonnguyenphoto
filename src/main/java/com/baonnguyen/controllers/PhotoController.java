@@ -119,6 +119,11 @@ public class PhotoController {
             model.addAttribute("message", "Something went wrong");
             return "error";
         }
+    }
 
+    @GetMapping("/photo/{id}")
+    public String deletePhoto(@PathVariable("id") Long id) {
+        photoService.deletePhotoById(id);
+        return "redirect:/admin";
     }
 }

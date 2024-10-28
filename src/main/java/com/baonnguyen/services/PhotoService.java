@@ -13,4 +13,6 @@ public interface PhotoService {
     public List<PhotoDto> getPhotoByGallery(String galleryName);
 
     public List<PhotoDto> findRandomPhotos(int count);
+
+    void deletePhotoById(Long id);
 }

@@ -34,6 +34,28 @@ function selectCollection(collection) {
   document.getElementById('selectedCollectionInput').textContent = collection;
 }
 
+// function setPhotoIdForDelete(photoId) {
+//   document.getElementById('modalPhotoId').value = photoId;  // Set the photoId in the hidden input
+// }
+//
+// function confirmDelete(){
+//   const photoId = document.getElementById('modalPhotoId').value;
+//   const deleteUrl = `/photo/${photoId}`;
+//
+//   fetch(deleteUrl, {method: 'DELETE'})
+//       .then(response => {
+//         if (response.ok) {
+//           alert('Photo deleted!');
+//           window.location.reload();
+//         } else {
+//           alert('Failed to delete photo');
+//         }
+//       }).catch(error => {
+//         console.error('Error:', error);
+//         alert('An error occurred.');
+//       });
+// }
+
  
 
 

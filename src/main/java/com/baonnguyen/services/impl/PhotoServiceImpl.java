@@ -52,5 +52,8 @@ public class PhotoServiceImpl implements PhotoService {
         return photos.stream().map((photo) -> mapToPhotoDto(photo)).collect(Collectors.toList());
     }
 
-
+    @Override
+    public void deletePhotoById(Long id){
+        photoRepository.deleteById(id);
+    }
 }
