@@ -56,7 +56,6 @@ public class PhotoController {
 
     @GetMapping("/admin")
     public String displayPhotoCollection(@RequestParam(value = "galleryName", required = false) String galleryName , Model model) {
-        // NEED TO IMPLEMENT THE FILTER TO SELECT COLLECTION
         List<PhotoDto> photos;
         if(galleryName == null || galleryName.isEmpty()) {
             photos = photoService.getPhotoByGallery("landscape");
@@ -72,51 +71,19 @@ public class PhotoController {
                               @RequestParam("galleryName") String galleryName,
                               Model model){
 
-        System.out.println("Method's called");
-
         if(file.isEmpty()){
             model.addAttribute("message", "Please select a file");
             return "redirect:/admin";
         }
-
-        try{
-            long fileSize = file.getSize();
-            System.out.println("uploaded file size: " + fileSize);
-
-            // Generate Unique filename with category prefix
-            String fileName = galleryName + "_" + UUID.randomUUID().toString() + "_" + file.getOriginalFilename();
-
-            // Define upload gallery -- NEED TO IMPLEMENT ticket BNN-9 here
-            String uploadDir = System.getProperty("user.dir") + "/uploads/" + galleryName + "/";
-            Path uploadPath = Paths.get(uploadDir);
-
-            if(!Files.exists(uploadPath)){
-                Files.createDirectories(uploadPath);
-            }
-
-            // Save file to local
-            Path path = uploadPath.resolve(fileName); // .resolve will get the full path
-            Files.copy(file.getInputStream(), path, StandardCopyOption.REPLACE_EXISTING);
-
-            // Create and save photo record
-            Photo photo = new Photo();
-            photo.setTitle(fileName);
-            photo.setDescription(null);
-            photo.setPhotoUrl("/uploads/" + galleryName + "/" + fileName);
-            photo.getUploadedOn();
-
-            // Save Category if not existed
-            Category category = categoryService.findByCatName(galleryName)
-                    .orElseThrow(() -> new IllegalArgumentException("Category not found"));
-            photo.setCategory(category);
-
-            // Save to DB
-            photoService.savePhoto(photo);
-
-            model.addAttribute("message", "Photo uploaded");
+        try {
+            photoService.handleUploadPhoto(file, galleryName);
+            model.addAttribute("message", "Photo uploaded successfully");
             return "redirect:/admin";
-        }catch(IOException e) {
-            model.addAttribute("message", "Something went wrong");
+        } catch(IllegalArgumentException e){
+            model.addAttribute("message", e.getMessage());
+            return "redirect:/admin";
+        } catch (Exception e) {
+            model.addAttribute("message", e.getMessage());
             return "error";
         }
     }

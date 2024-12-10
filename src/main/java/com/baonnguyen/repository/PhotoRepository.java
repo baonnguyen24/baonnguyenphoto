@@ -10,6 +10,7 @@ import java.util.Optional;
 
 public interface PhotoRepository extends JpaRepository<Photo, Long> {
     Optional<Photo> findByTitle(String url);
+    Optional<Photo> findByPhotoUrl(String photoUrl);
     List<Photo> findByCategory_CatName(String galleryName);
 
     @Query(value = "SELECT * FROM photos ORDER BY RANDOM() LIMIT :count", nativeQuery = true)
