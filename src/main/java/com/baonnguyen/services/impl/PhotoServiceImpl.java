@@ -6,6 +6,8 @@ import com.baonnguyen.models.Photo;
 import com.baonnguyen.repository.PhotoRepository;
 import com.baonnguyen.services.CategoryService;
 import com.baonnguyen.services.PhotoService;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -22,6 +24,7 @@ import java.util.stream.Collectors;
 public class PhotoServiceImpl implements PhotoService {
     private PhotoRepository photoRepository;
     private CategoryService categoryService;
+    private static final Logger logger = LogManager.getLogger(PhotoServiceImpl.class);
 
     // ===== CONSTRUCTOR ======
     public PhotoServiceImpl(PhotoRepository photoRepository, CategoryService categoryService) {
@@ -89,6 +92,7 @@ public class PhotoServiceImpl implements PhotoService {
 
     @Override
     public void handleUploadPhoto(MultipartFile file, String galleryName) throws IOException {
+        logger.debug("Handling photo upload for gallery: {}", galleryName);
         try {
             long fileSize = file.getSize();
             System.out.println("uploaded file size: " + fileSize);
@@ -126,8 +130,9 @@ public class PhotoServiceImpl implements PhotoService {
 
             // Save to DB
             savePhoto(photo);
+            logger.info("Photo uploaded successfully");
         } catch (Exception e){
-            System.err.println("File upload failed: " + e.getMessage());
+            logger.error("Error uploading photo", e);
             throw new RuntimeException(e);
         }
     }

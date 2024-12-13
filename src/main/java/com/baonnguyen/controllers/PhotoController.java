@@ -5,29 +5,23 @@ import com.baonnguyen.models.Category;
 import com.baonnguyen.models.Photo;
 import com.baonnguyen.services.CategoryService;
 import com.baonnguyen.services.PhotoService;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
-
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.nio.file.StandardCopyOption;
-import java.time.LocalDateTime;
 import java.util.List;
-import java.util.Optional;
-import java.util.UUID;
+
 
 @Controller
 public class PhotoController {
 
     private PhotoService photoService;
     private CategoryService categoryService;
+    private static final Logger logger = LogManager.getLogger(PhotoController.class);
 
     public PhotoController(PhotoService photoService, CategoryService categoryService) {
-
         this.photoService = photoService;
         this.categoryService = categoryService;
     }
@@ -70,7 +64,7 @@ public class PhotoController {
     public String uploadPhoto(@RequestParam("photoFile") MultipartFile file,
                               @RequestParam("galleryName") String galleryName,
                               Model model){
-
+        logger.info("Upload photo method called");
         if(file.isEmpty()){
             model.addAttribute("message", "Please select a file");
             return "redirect:/admin";
@@ -84,13 +78,20 @@ public class PhotoController {
             return "redirect:/admin";
         } catch (Exception e) {
             model.addAttribute("message", e.getMessage());
+            logger.error("Error uploading photo", e.getMessage());
             return "error";
         }
     }
 
     @GetMapping("/photo/{id}")
     public String deletePhoto(@PathVariable("id") Long id) {
-        photoService.deletePhotoById(id);
-        return "redirect:/admin";
+        logger.info("Delete photo");
+        try{
+            photoService.deletePhotoById(id);
+            return "redirect:/admin";
+        } catch (Exception e){
+            logger.error("Failed to delete photo", e);
+            return "error";
+        }
     }
 }

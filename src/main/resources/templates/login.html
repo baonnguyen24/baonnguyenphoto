@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -60,16 +60,19 @@
           </div>
         </div>
       </div>
+
       <div
         class="text-center d-flex justify-content-center align-items-center flex-row login"
       >
-        <div>
-          <p>Username</p>
-          <input type="text" />
-          <p>Password</p>
-          <input type="password" />
-          <p><a class="btn btn-green" style="width: 150px;">Sign In</a></p>
-        </div>
+        <form th:action="@{/login}" method = "post">
+          <div>
+            <p>Username</p>
+            <input type="text" />
+            <p>Password</p>
+            <input type="password" />
+            <p><a class="btn btn-green" style="width: 150px;">Sign In</a></p>
+          </div>
+        </form>
       </div>
     </main>
     <!-- Vendor JS Files -->
@@ -87,4 +90,4 @@
     <script src="assets/js/main.js"></script>
     <script src="assets/js/admin.js"></script>
   </body>
-</html>
+</>
