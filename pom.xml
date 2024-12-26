@@ -103,13 +103,6 @@
 			<scope>test</scope>
 		</dependency>
 
-		<!-- Spring Boot Starter Test -->
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-test</artifactId>
-			<scope>test</scope>
-		</dependency>
-
 		<!-- SLF4J -->
 		<dependency>
 			<groupId>org.slf4j</groupId>

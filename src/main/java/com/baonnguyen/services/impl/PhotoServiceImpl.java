@@ -64,7 +64,6 @@ public class PhotoServiceImpl implements PhotoService {
             System.err.println("Failed to save photo: " + e.getMessage());
             throw new RuntimeException(e);
         }
-
     }
 
     public List<PhotoDto> getPhotoByGallery(String galleryName){
@@ -80,7 +79,6 @@ public class PhotoServiceImpl implements PhotoService {
             System.err.println("Failed to delete photo: " + e.getMessage());
             throw new RuntimeException(e);
         }
-
     }
 
     @Override

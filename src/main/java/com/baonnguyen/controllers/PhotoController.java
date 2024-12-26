@@ -1,9 +1,6 @@
 package com.baonnguyen.controllers;
 
 import com.baonnguyen.dto.PhotoDto;
-import com.baonnguyen.models.Category;
-import com.baonnguyen.models.Photo;
-import com.baonnguyen.services.CategoryService;
 import com.baonnguyen.services.PhotoService;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -18,12 +15,11 @@ import java.util.List;
 public class PhotoController {
 
     private PhotoService photoService;
-    private CategoryService categoryService;
     private static final Logger logger = LogManager.getLogger(PhotoController.class);
 
-    public PhotoController(PhotoService photoService, CategoryService categoryService) {
+    public PhotoController(PhotoService photoService) {
         this.photoService = photoService;
-        this.categoryService = categoryService;
+
     }
 
     @GetMapping("/")
