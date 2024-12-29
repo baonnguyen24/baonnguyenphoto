@@ -19,7 +19,6 @@ public class PhotoController {
 
     public PhotoController(PhotoService photoService) {
         this.photoService = photoService;
-
     }
 
     @GetMapping("/")
@@ -61,21 +60,26 @@ public class PhotoController {
                               @RequestParam("galleryName") String galleryName,
                               Model model){
         logger.info("Upload photo method called");
+        // Check file is empty
         if(file.isEmpty()){
             model.addAttribute("message", "Please select a file");
             return "redirect:/admin";
         }
+
+        // Check galleryName must be selected
+        if(galleryName == null || galleryName.trim().isEmpty()){
+            model.addAttribute("error", "Please select a gallery before uploading");
+            return "admin";
+        }
+
         try {
             photoService.handleUploadPhoto(file, galleryName);
             model.addAttribute("message", "Photo uploaded successfully");
             return "redirect:/admin";
-        } catch(IllegalArgumentException e){
-            model.addAttribute("message", e.getMessage());
-            return "redirect:/admin";
         } catch (Exception e) {
-            model.addAttribute("message", e.getMessage());
+            model.addAttribute("error", "Error uploading photo: " + e.getMessage());
             logger.error("Error uploading photo", e.getMessage());
-            return "error";
+            return "admin";
         }
     }
 

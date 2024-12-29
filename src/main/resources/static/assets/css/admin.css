@@ -11,8 +11,7 @@ p {
   color: var(--color-default);
 }
 #hi {
-    position: fixed;
-    color: rgba(255, 255, 255, 0.5);
+    color: white;
     z-index: 999;
     top: 5%;
     left: 0;
@@ -30,11 +29,26 @@ p {
     color: #d04848;
 }
 .dropdown-item{
-  color: var(--green-primary);
+    color: black;
+    transition: color 0.3s ease;
 }
+.dropdown-item:hover{
+    color: var(--green-primary);
+}
+
 #addNewItems:hover img {
     transform: scale(1.1);
 }
+
+.disabled-link {
+    pointer-events: none;  /* Prevent clicking */
+    opacity: 0.5;  /* Grey out the link */
+}
+
+.disabled-link img {
+    opacity: 0.5;  /* Grey out the plus icon when disabled */
+}
+
 footer {
   height: 100px;
 }
@@ -51,8 +65,9 @@ footer {
 .modal{
   z-index: 100000;
 }
+
 @media screen and (max-width: 800px) {
   #hi {
-    display: none;
+      display: none;
   }
 }

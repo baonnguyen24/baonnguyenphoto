@@ -64,13 +64,26 @@
       <div
         class="text-center d-flex justify-content-center align-items-center flex-row login"
       >
-        <form th:action="@{/login}" method = "post">
+        <form th:action="@{/login}" method="post">
           <div>
             <p>Username</p>
-            <input type="text" />
+            <input
+                    id="username"
+                    type="text"
+                    class="form-control"
+                    placeholder="Username"
+                    name="username"
+            >
+
             <p>Password</p>
-            <input type="password" />
-            <p><a class="btn btn-green" style="width: 150px;">Sign In</a></p>
+            <input
+                    id="password"
+                    type="password"
+                    class="form-control"
+                    placeholder="Password"
+                    name="password"
+            >
+            <button type="submit" value="Log in" class="btn btn-green" style="width: 150px;">Sign In</button>
           </div>
         </form>
       </div>
@@ -90,4 +103,4 @@
     <script src="assets/js/main.js"></script>
     <script src="assets/js/admin.js"></script>
   </body>
-</>
+</html>

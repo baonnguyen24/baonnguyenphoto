@@ -27,4 +27,15 @@ public class CategoryServiceImpl implements CategoryService {
     public Optional<Category> findByCatName(String catName){
         return categoryRepository.findByCatName(catName);
     }
+
+    @Override
+    public Category createCategory(String catName){
+        try{
+            Category newCategory = new Category();
+            newCategory.setCatName(catName);
+            return categoryRepository.save(newCategory);
+        } catch (Exception e) {
+            throw new IllegalStateException("Failed to create category: " + catName, e);
+        }
+    }
 }

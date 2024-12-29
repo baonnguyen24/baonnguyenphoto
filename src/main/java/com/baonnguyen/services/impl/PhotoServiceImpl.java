@@ -90,7 +90,7 @@ public class PhotoServiceImpl implements PhotoService {
 
     @Override
     public void handleUploadPhoto(MultipartFile file, String galleryName) throws IOException {
-        logger.debug("Handling photo upload for gallery: {}", galleryName);
+        logger.info("Handling photo upload for gallery: {}", galleryName);
         try {
             long fileSize = file.getSize();
             System.out.println("uploaded file size: " + fileSize);
@@ -123,7 +123,7 @@ public class PhotoServiceImpl implements PhotoService {
 
             // Save Category if not existed
             Category category = categoryService.findByCatName(galleryName)
-                    .orElseThrow(() -> new IllegalArgumentException("Category not found"));
+                    .orElseGet(() -> categoryService.createCategory(galleryName));
             photo.setCategory(category);
 
             // Save to DB

@@ -6,4 +6,5 @@ import java.util.Optional;
 
 public interface CategoryService {
     Optional<Category> findByCatName(String catName);
+    Category createCategory(String catName);
 }

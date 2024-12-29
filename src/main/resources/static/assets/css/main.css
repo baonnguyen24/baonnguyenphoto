@@ -1281,3 +1281,33 @@ h6 {
 .footer .credits a {
   color: var(--color-primary);
 }
+
+.logout-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #ff4d4d; /* Vibrant red for attention */
+  color: white; /* Icon and text color */
+  border: none;
+  border-radius: 5px;
+  padding: 6px 10px;
+  font-size: 12px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.logout-button i {
+  margin-right: 8px; /* Space between icon and text */
+  font-size: 16px;
+}
+
+.logout-button:hover {
+  background-color: #e60000; /* Darker red on hover */
+  transform: scale(1.05); /* Slight zoom on hover */
+}
+
+.logout-button:active {
+  background-color: #cc0000; /* Even darker red on click */
+  transform: scale(0.95); /* Slight shrink on click */
+}
