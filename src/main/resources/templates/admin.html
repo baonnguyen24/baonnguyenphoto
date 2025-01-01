@@ -96,7 +96,7 @@
         </div>
     </div>
     <div class="container">
-        <form method="get" action="/admin">
+        <form id="galleryForm" method="get" action="/admin" th:object="${galleryName}">
             <div class="d-flex justify-content-center align-items-center col-lg-3 position-relative">
                 <p>Collection:</p>
                 <div class="dropdown" style="margin-left: 20px;">
@@ -106,18 +106,23 @@
                             type="button"
                             data-bs-toggle="dropdown"
                             aria-expanded="false">
-                            Choose collections
+                            <span id="selectedGalleryName">
+                                <span th:text="${galleryName != null ? galleryName : 'Choose collections'}"></span>
+                            </span>
                     </button>
                     <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                        <li><a class="dropdown-item admin-collection" href="?galleryName=landscape">Landscape</a></li>
-                        <li><a class="dropdown-item admin-collection" href="?galleryName=cityscape">Cityscape</a></li>
-                        <li><a class="dropdown-item admin-collection" href="?galleryName=event">Event</a></li>
-                        <li><a class="dropdown-item admin-collection" href="?galleryName=product">Product</a>
+                        <li th:each="category: ${categories}">
+                            <a class="dropdown-item admin-collection"
+                                href="#"
+                                th:data-gallery="${category.catName}"
+                                th:text="${category.catName}"
+                                >
+                            </a>
                         </li>
                     </ul>
                 </div>
             </div>
-            <input type="hidden" id="selectedCollectionInput" name="selectedCollection" value="">
+            <input type="hidden" id="selectedCollection" name="galleryName" th:value="${galleryName}">
         </form>
     </div>
 

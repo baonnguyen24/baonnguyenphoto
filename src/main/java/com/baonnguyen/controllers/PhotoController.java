@@ -1,6 +1,8 @@
 package com.baonnguyen.controllers;
 
+import com.baonnguyen.dto.CategoryDto;
 import com.baonnguyen.dto.PhotoDto;
+import com.baonnguyen.services.CategoryService;
 import com.baonnguyen.services.PhotoService;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -15,10 +17,12 @@ import java.util.List;
 public class PhotoController {
 
     private PhotoService photoService;
+    private CategoryService categoryService;
     private static final Logger logger = LogManager.getLogger(PhotoController.class);
 
-    public PhotoController(PhotoService photoService) {
+    public PhotoController(PhotoService photoService, CategoryService categoryService) {
         this.photoService = photoService;
+        this.categoryService = categoryService;
     }
 
     @GetMapping("/")
@@ -45,13 +49,16 @@ public class PhotoController {
 
     @GetMapping("/admin")
     public String displayPhotoCollection(@RequestParam(value = "galleryName", required = false) String galleryName , Model model) {
-        List<PhotoDto> photos;
         if(galleryName == null || galleryName.isEmpty()) {
-            photos = photoService.getPhotoByGallery("landscape");
-        } else{
-            photos = photoService.getPhotoByGallery(galleryName);
+            galleryName = "landscape";
         }
+        List<PhotoDto> photos = photoService.getPhotoByGallery(galleryName);
+        List<CategoryDto> categories = categoryService.findAllCategories();
+
+        model.addAttribute("galleryName", galleryName);
+        model.addAttribute("categories", categories);
         model.addAttribute("photos", photos);
+
         return "admin";
     }
 

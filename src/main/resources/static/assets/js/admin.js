@@ -1,3 +1,5 @@
+
+<!-- ==== Showing Greeting ==== -->
 document.addEventListener('DOMContentLoaded', function(){
   let a = ["Bao Nguyen", "Nguyen Nguyen", "Joe", "Chô", "Bao", "NVĐ", "Bun"];
   document.querySelector("#admin-name").innerHTML = a[Math.floor(Math.random() * a.length)];
@@ -24,24 +26,57 @@ document.addEventListener('DOMContentLoaded', function(){
 // end greeting notice
 });
 
-let collection = document.querySelectorAll(".admin-collection");
-
-<!-- ==== JavaScript to handle selection ==== -->
-function selectCollection(collection) {
-  // Update the dropdown button text
-  document.getElementById('dropdownMenuButton').textContent = collection;
-  // Store the selected value in the hidden input field for submission
-  document.getElementById('selectedCollectionInput').textContent = collection;
-}
+<!-- ==== Reload Gallery Section when a collection is selected ==== -->
+// document.querySelectorAll('.admin-collection').forEach(item => {
+//   item.addEventListener('click', function(e){
+//     e.preventDefault();
+//
+//     const galleryName = this.getAttribute('data-gallery');
+//
+//     // Update hidden input field with selected gallery
+//     document.getElementById('selectedCollection').value = galleryName;
+//
+//     // Submit the form to refresh photo section
+//     document.getElementById('galleryForm').submit();
+//   });
+// });
 
 <!-- ==== JavaScript to disable/enable + button when Collection is not selected ==== -->
-const gallerySelect = document.getElementById('galleryName');
-const addNewItemsButton = document.getElementById('addNewItems');
+document.addEventListener('DOMContentLoaded', function() {
 
-gallerySelect.addEventListener('change', function() {
-  if(gallerySelect.value) {
-    addNewItemsButton.classList.remove('disabled-link'); // Enable the button
-  } else {
-    addNewItemsButton.classList.add('disabled-link'); // Disable the button
+  const dropDownItems = document.querySelectorAll('.dropdown-item');
+  const selectedGalleryName = document.getElementById('selectedGalleryName');
+  const addNewItemsButton = document.getElementById('addNewItems');
+  const hiddenInput = document.getElementById('selectedCollection');
+  const galleryForm = document.getElementById('galleryForm');
+
+  if(hiddenInput.value){
+    addNewItemsButton.classList.remove('disabled-link');
+    console.log('Gallery selected on load: ', hiddenInput.value);
   }
+
+  dropDownItems.forEach(item => {
+    item.addEventListener('click', function(event) {
+      event.preventDefault();
+
+      // Get the selected gallery name
+      const galleryName = this.getAttribute('data-gallery');
+
+      // Update the displayed gallery name
+      selectedGalleryName.textContent = galleryName;
+
+      // Update hidden input value
+      hiddenInput.value = galleryName;
+
+      // Enable the + button by removing the disabled-link class
+      addNewItemsButton.classList.remove('disabled-link');
+
+      console.log('Selected Gallery: ', galleryName);
+      console.log('Hidden input value: ', hiddenInput.value);
+      console.log('addNewItems button class list: ', addNewItemsButton.classList);
+
+      // Submit the form to refresh photo section
+      galleryForm.submit();
+    });
+  });
 });

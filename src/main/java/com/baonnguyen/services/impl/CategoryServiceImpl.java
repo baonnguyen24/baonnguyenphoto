@@ -1,12 +1,15 @@
 package com.baonnguyen.services.impl;
 
+import com.baonnguyen.dto.CategoryDto;
 import com.baonnguyen.models.Category;
 import com.baonnguyen.repository.CategoryRepository;
 import com.baonnguyen.services.CategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class CategoryServiceImpl implements CategoryService {
@@ -22,6 +25,19 @@ public class CategoryServiceImpl implements CategoryService {
     // ========================
     // ========================
     // ===== METHODS ==========
+
+    @Override
+    public List<CategoryDto> findAllCategories(){
+        List<Category> categories = categoryRepository.findAll();
+        return categories.stream().map((category) -> maptoCategoryDto(category)).collect(Collectors.toList());
+    }
+
+    private CategoryDto maptoCategoryDto(Category category){
+        return CategoryDto.builder()
+                .id(category.getId())
+                .catName(category.getCatName())
+                .build();
+    }
 
     @Override
     public Optional<Category> findByCatName(String catName){
