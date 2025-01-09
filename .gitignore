@@ -34,3 +34,6 @@ build/
 
 ### MACOS ###
 .DS_Store
+
+### Application.properties ###
+src/main/resources/application.properties
