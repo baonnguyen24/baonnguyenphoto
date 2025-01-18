@@ -26,21 +26,6 @@ document.addEventListener('DOMContentLoaded', function(){
 // end greeting notice
 });
 
-<!-- ==== Reload Gallery Section when a collection is selected ==== -->
-// document.querySelectorAll('.admin-collection').forEach(item => {
-//   item.addEventListener('click', function(e){
-//     e.preventDefault();
-//
-//     const galleryName = this.getAttribute('data-gallery');
-//
-//     // Update hidden input field with selected gallery
-//     document.getElementById('selectedCollection').value = galleryName;
-//
-//     // Submit the form to refresh photo section
-//     document.getElementById('galleryForm').submit();
-//   });
-// });
-
 <!-- ==== JavaScript to disable/enable + button when Collection is not selected ==== -->
 document.addEventListener('DOMContentLoaded', function() {
 

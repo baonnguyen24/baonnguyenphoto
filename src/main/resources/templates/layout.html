@@ -41,9 +41,9 @@
 
       <nav id="navbar" class="navbar">
         <ul>
-          <li><a th:href="@{index}" class="active">Home</a></li>
-          <li><a th:href="@{about}">About</a></li>
-          <li class="dropdown"><a href="#"><span>Gallery</span> <i class="bi bi-chevron-down dropdown-indicator"></i></a>
+          <li><a th:href="@{index}" class="active" data-cy="index">Home</a></li>
+          <li><a th:href="@{about}" data-cy="about">About</a></li>
+          <li class="dropdown" data-cy="gallery"><a href="#"><span>Gallery</span> <i class="bi bi-chevron-down dropdown-indicator"></i></a>
             <ul>
               <li><a th:href="@{landscape}">Landscape</a></li>
               <li><a th:href="@{cityscape}">Cityscape</a></li>
