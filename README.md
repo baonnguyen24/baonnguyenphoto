@@ -28,7 +28,8 @@ It's quite simple. You'll see:
 * **Gallery** (here you'll see my work)
 * A hidden page that I call **Admin console** (the heart of my website) that's used for managing my photos and categories. But you'll need to login
 
-![Main page](https://live.staticflickr.com/65535/54273981855_da494b68dd_h.jpg)
+
+![Main page](https://live.staticflickr.com/65535/54273981855_0bb65915c3_h.jpg)
 
 ![Admin Console](https://live.staticflickr.com/65535/54272673012_bf59eb36f4_h.jpg)
 
